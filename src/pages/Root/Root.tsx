@@ -13,6 +13,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import WalletDisclaimer from 'components/WalletDisclaimer';
 import { merge } from 'lodash';
+import { ethers } from 'ethers';
 
 dotenv.config();
 
@@ -37,7 +38,25 @@ const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
 const { chains, provider } = configureChains(
     [chain.optimism, chain.optimismGoerli, chain.arbitrum],
     [
-        alchemyProvider(), // TODO: It is recommended to use private API key
+        //  Use it at our own risk as this will probably break depending on what wallet you allow users to connect with and what your project is trying to do
+        (chain: any) => {
+            return {
+                chain: chain,
+                provider: () => {
+                    // check if window.ethereum is available and use it as the provider
+                    if (typeof window !== 'undefined' && window.ethereum) {
+                        const provider = new ethers.providers.Web3Provider(window.ethereum as any, {
+                            chainId: chain.id,
+                            name: chain.network,
+                            ensAddress: chain.contracts?.ensRegistry?.address,
+                        });
+                        return Object.assign(provider);
+                    }
+                },
+            };
+        },
+        alchemyProvider({ stallTimeout: 2000 }),
+        infuraProvider({ stallTimeout: 2000 }),
         jsonRpcProvider({
             rpc: (chain) => ({
                 http: `https://rpc.ankr.com/${CHAIN_TO_RPC_PROVIDER_NETWORK_NAME[chain.id].ankr}/${
