@@ -16,11 +16,9 @@ import useSUSDWalletBalance from 'queries/wallet/usesUSDWalletBalance';
 import { FlexDivCentered, FlexDivColumn } from 'styles/common';
 import { NetworkId } from 'types/network';
 import { NETWORK_SWITCHER_SUPPORTED_NETWORKS, SUPPORTED_NETWORKS_DESCRIPTIONS } from 'constants/network';
-import { useNetwork } from 'wagmi';
 
 const WalletInfo: React.FC = () => {
     const { t } = useTranslation();
-    const { chain } = useNetwork();
 
     const isAppReady = useSelector((state: RootState) => getIsAppReady(state));
     const networkId = useSelector((state: RootState) => getNetworkId(state));
@@ -77,7 +75,6 @@ const WalletInfo: React.FC = () => {
                                 })}
                             >
                                 <Wrapper>
-                                    <span>{chain?.id}</span>
                                     <WalletAddressInfo
                                         isWalletConnected={isWalletConnected}
                                         isClickable={true}

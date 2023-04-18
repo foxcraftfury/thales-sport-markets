@@ -18,7 +18,7 @@ import {
     trustWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { optimism, optimismGoerli, arbitrum, mainnet, polygon, bsc } from 'wagmi/chains';
+import { optimism, optimismGoerli, arbitrum } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
@@ -48,7 +48,7 @@ const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
 };
 
 const { chains, provider } = configureChains(
-    [mainnet, optimism, optimismGoerli, polygon, arbitrum, bsc],
+    [optimism, optimismGoerli, arbitrum],
     [
         jsonRpcProvider({
             rpc: (chain) => ({
