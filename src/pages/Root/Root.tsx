@@ -17,8 +17,8 @@ import {
     imTokenWallet,
     trustWallet,
 } from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createClient, mainnet, WagmiConfig } from 'wagmi';
-import { optimism, optimismGoerli, arbitrum, polygon, bsc } from 'wagmi/chains';
+import { configureChains, createClient, WagmiConfig } from 'wagmi';
+import { optimism, optimismGoerli, arbitrum, mainnet, polygon, bsc } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
