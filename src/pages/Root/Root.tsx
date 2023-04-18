@@ -5,7 +5,7 @@ import App from 'pages/Root/App';
 import dotenv from 'dotenv';
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
 import '@rainbow-me/rainbowkit/dist/index.css';
-import { connectorsForWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
+import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import {
     injectedWallet,
     rainbowWallet,
@@ -22,8 +22,6 @@ import { optimism, optimismGoerli, arbitrum, mainnet, bsc, polygon } from 'wagmi
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
-import WalletDisclaimer from 'components/WalletDisclaimer';
-import { merge } from 'lodash';
 
 dotenv.config();
 
@@ -121,8 +119,6 @@ const instance = createInstance({
     linkTracking: true, // optional, default value: true
 });
 
-const customTheme = merge(darkTheme(), { colors: { modalBackground: '#1A1C2B' } });
-
 const Root: React.FC<RootProps> = ({ store }) => {
     return (
         <Provider store={store}>
@@ -130,10 +126,8 @@ const Root: React.FC<RootProps> = ({ store }) => {
                 <WagmiConfig client={wagmiClient}>
                     <RainbowKitProvider
                         chains={chains}
-                        theme={customTheme}
                         appInfo={{
                             appName: 'Overtime',
-                            disclaimer: WalletDisclaimer,
                         }}
                     >
                         <App />
