@@ -180,7 +180,7 @@ const App = () => {
                         autoConnect();
                     }
                 } else {
-                    disconnect();
+                    // disconnect();
                 }
             });
         }
