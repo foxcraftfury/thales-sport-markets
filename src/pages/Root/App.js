@@ -99,7 +99,7 @@ const App = () => {
                         providerNetworkId = mmChainId;
                     } else {
                         providerNetworkId = DEFAULT_NETWORK_ID;
-                        disconnect();
+                        // disconnect();
                     }
                 } else {
                     // without MM, for incognito mode
@@ -180,7 +180,7 @@ const App = () => {
                         autoConnect();
                     }
                 } else {
-                    // disconnect();
+                    disconnect();
                 }
             });
         }
