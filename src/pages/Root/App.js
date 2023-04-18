@@ -99,6 +99,7 @@ const App = () => {
                         providerNetworkId = mmChainId;
                     } else {
                         providerNetworkId = DEFAULT_NETWORK_ID;
+                        //
                         // disconnect();
                     }
                 } else {
