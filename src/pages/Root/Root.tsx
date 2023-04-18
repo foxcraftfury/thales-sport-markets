@@ -19,7 +19,6 @@ import {
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { optimism, optimismGoerli, arbitrum, mainnet, bsc, polygon } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
@@ -66,7 +65,6 @@ const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
 const { chains, provider } = configureChains(
     [mainnet, optimism, optimismGoerli, polygon, arbitrum, bsc],
     [
-        alchemyProvider({ apiKey: 'uz1o_JJVVsC_pXTBUdVRB_NfW4QMYKnW', stallTimeout: 2000 }),
         jsonRpcProvider({
             rpc: (chain) => ({
                 http: !CHAIN_TO_RPC_PROVIDER_NETWORK_NAME[chain.id]?.chainnode
