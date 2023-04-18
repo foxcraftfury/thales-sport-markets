@@ -5,7 +5,7 @@ import { getIsWalletConnected, getNetworkId, getWalletAddress, updateNetworkSett
 import { RootState } from 'redux/rootReducer';
 import styled from 'styled-components';
 import { truncateAddress } from 'utils/formatters/string';
-import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton, ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { hasEthereumInjected } from 'utils/network';
 import { getIsAppReady, getIsMobile } from 'redux/modules/app';
@@ -60,6 +60,7 @@ const WalletInfo: React.FC = () => {
     return (
         <Container>
             <FlexDivColumn>
+                <ConnectButton />
                 <RainbowConnectButton.Custom>
                     {({ openConnectModal, openAccountModal, mounted }) => {
                         return (
