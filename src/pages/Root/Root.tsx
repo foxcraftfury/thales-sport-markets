@@ -18,7 +18,7 @@ import {
     trustWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { optimism, optimismGoerli, arbitrum } from 'wagmi/chains';
+import { optimism, optimismGoerli, arbitrum, mainnet, bsc, polygon } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
@@ -38,17 +38,32 @@ type RpcProvider = {
 };
 
 const CHAIN_TO_RPC_PROVIDER_NETWORK_NAME: Record<number, RpcProvider> = {
+    1: {
+        ankr: '',
+        chainnode: 'mainnet',
+        blast: 'eth-mainnet',
+    },
     10: {
         ankr: 'optimism',
         chainnode: 'optimism-mainnet',
         blast: 'optimism-mainnet',
+    },
+    56: {
+        ankr: '',
+        chainnode: '',
+        blast: 'bsc-mainnet',
+    },
+    137: {
+        ankr: '',
+        chainnode: 'polygon-mainnet',
+        blast: 'polygon-mainnet',
     },
     420: { ankr: 'optimism_testnet', chainnode: 'optimism-goerli', blast: 'optimism-goerli' },
     42161: { ankr: 'arbitrum', chainnode: 'arbitrum-one', blast: 'arbitrum-one' },
 };
 
 const { chains, provider } = configureChains(
-    [optimism, optimismGoerli, arbitrum],
+    [mainnet, optimism, optimismGoerli, polygon, arbitrum, bsc],
     [
         jsonRpcProvider({
             rpc: (chain) => ({
