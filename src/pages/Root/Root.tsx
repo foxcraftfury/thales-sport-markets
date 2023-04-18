@@ -9,7 +9,7 @@ import { connectorsForWallets, RainbowKitProvider, darkTheme } from '@rainbow-me
 import {
     injectedWallet,
     rainbowWallet,
-    metaMaskWallet,
+    // metaMaskWallet,
     coinbaseWallet,
     walletConnectWallet,
     braveWallet,
@@ -69,7 +69,7 @@ const connectors = connectorsForWallets([
     {
         groupName: 'Recommended',
         wallets: [
-            metaMaskWallet({ chains }),
+            // metaMaskWallet({ chains }),
             walletConnectWallet({ chains }),
             braveWallet({ chains }),
             ledgerWallet({ chains }),
